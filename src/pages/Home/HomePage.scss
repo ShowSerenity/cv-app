@@ -1,0 +1,21 @@
+/* src/pages/Home/HomePage.scss */
+
+.home-page {
+  min-height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-6);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 720px;
+    text-align: center;
+    color: var(--color-white);
+  }
+}

@@ -1,0 +1,98 @@
+/* src/components/TimeLine/TimeLine.scss */
+
+.timeline {
+  max-height: 80vh;
+  min-height: 30vh;
+  overflow-y: auto;
+  padding-right: var(--space-2);
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: var(--space-3);
+    align-items: start;
+  }
+
+  &__date-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  &__date {
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+
+  &__line {
+    width: 4px;
+    min-height: 96px;
+    background-color: var(--color-primary);
+    display: inline-block;
+  }
+
+  &__card {
+    position: relative;
+    background-color: var(--color-card-bg);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  &__card::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: -12px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 12px solid var(--color-card-bg);
+  }
+
+  &__title {
+    margin-bottom: var(--space-2);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.2;
+  }
+
+  &__text {
+    color: var(--color-text);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 767px) {
+  .timeline {
+    &__item {
+      grid-template-columns: 56px 1fr;
+    }
+
+    &__date {
+      font-size: 1rem;
+    }
+
+    &__line {
+      min-height: 80px;
+    }
+
+    &__title {
+      font-size: 1.2rem;
+    }
+
+    &__card {
+      padding: var(--space-3) var(--space-4);
+    }
+  }
+}
