@@ -1,14 +1,16 @@
-// src/pages/Inner/InnerPage.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import './InnerPage.scss';
 import Panel from '../../components/Panel/Panel';
-import Box from '../../components/Box/Box';
-import Info from '../../components/Info/Info';
+import Box from '../../components/shared/Box/Box';
+import Info from '../../components/shared/Info/Info';
 import TimeLine from '../../components/TimeLine/TimeLine';
 import Expertise from '../../components/Expertise/Expertise';
 import Portfolio from '../../components/Portfolio/Portfolio';
 import Address from '../../components/Address/Address';
 import Feedback from '../../components/Feedback/Feedback';
+import ScrollToTop from '../../components/shared/ScrollToTop/ScrollToTop';
+
 import {
   aboutText,
   contactItems,
@@ -27,27 +29,18 @@ const sectionIds = [
   'feedback'
 ];
 
-const MOBILE_BREAKPOINT = 768;
-
-const getInitialIsMobile = () => window.innerWidth < MOBILE_BREAKPOINT;
-const getInitialIsPanelOpen = () => window.innerWidth >= MOBILE_BREAKPOINT;
-
 const InnerPage: React.FC = () => {
+  const isMobile = useMediaQuery('(max-width: 767px)');
+  const isFirstRender = useRef(true);
   const [activeSection, setActiveSection] = useState('about');
-  const [isMobile, setIsMobile] = useState(getInitialIsMobile);
-  const [isPanelOpen, setIsPanelOpen] = useState(getInitialIsPanelOpen);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+    if (isFirstRender.current) {
+      setIsPanelOpen(!isMobile);
+      isFirstRender.current = false;
+    }
+  }, [isMobile]);
 
   useEffect(() => {
     const sections = sectionIds
@@ -94,11 +87,12 @@ const InnerPage: React.FC = () => {
       <Panel
         activeItemId={activeSection}
         isOpen={isPanelOpen}
+        isMobile={isMobile}
         onToggle={handleTogglePanel}
       />
 
       <main className="inner-page__content">
-        <h1 className="visually-hidden">John Doe Resume</h1>
+        <h1 className="visually-hidden">Assanali Rymgali Resume</h1>
 
         <div className="inner-page__container">
           <section id="about" className="inner-page__section">
@@ -137,6 +131,8 @@ const InnerPage: React.FC = () => {
             </Box>
           </section>
         </div>
+
+        <ScrollToTop />
       </main>
     </div>
   );

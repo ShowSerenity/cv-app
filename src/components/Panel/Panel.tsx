@@ -1,10 +1,9 @@
-// src/components/Panel/Panel.tsx
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import './Panel.scss';
-import Button from '../Button/Button';
-import PhotoBox from '../PhotoBox/PhotoBox';
+import Button from '../shared/Button/Button';
+import PhotoBox from '../shared/PhotoBox/PhotoBox';
 import Navigation from '../Navigation/Navigation';
 import { navigationItems } from '../../data/navigation';
 import { profileData } from '../../data/resume';
@@ -12,26 +11,16 @@ import { profileData } from '../../data/resume';
 type PanelProps = {
   activeItemId: string;
   isOpen: boolean;
+  isMobile: boolean;
   onToggle: () => void;
 };
 
-const MOBILE_BREAKPOINT = 768;
-
-const Panel: React.FC<PanelProps> = ({ activeItemId, isOpen, onToggle }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+const Panel: React.FC<PanelProps> = ({
+  activeItemId,
+  isOpen,
+  isMobile,
+  onToggle
+}) => {
   const handleNavItemClick = () => {
     if (isMobile) {
       onToggle();

@@ -2,8 +2,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.scss';
-import Button from '../../components/Button/Button';
-import PhotoBox from '../../components/PhotoBox/PhotoBox';
+import Button from '../../components/shared/Button/Button';
+import PhotoBox from '../../components/shared/PhotoBox/PhotoBox';
 import { profileData } from '../../data/resume';
 
 const HomePage: React.FC = () => {

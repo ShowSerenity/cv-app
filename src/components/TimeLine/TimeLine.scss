@@ -1,18 +1,27 @@
 /* src/components/TimeLine/TimeLine.scss */
 
 .timeline {
-  max-height: 80vh;
-  min-height: 30vh;
-  overflow-y: auto;
-  padding-right: var(--space-2);
+  width: 100%;
 
   &__list {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-4);
+  }
+
+  &__list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 34px;
+    width: 4px;
+    background-color: var(--color-primary);
   }
 
   &__item {
+    position: relative;
     display: grid;
     grid-template-columns: 72px 1fr;
     gap: var(--space-3);
@@ -20,24 +29,23 @@
   }
 
   &__date-column {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-2);
+    justify-content: center;
+    z-index: 1;
   }
 
   &__date {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 0 var(--space-2);
+    background-color: #ffffff;
     color: var(--color-text);
     font-weight: 700;
     font-size: 1.15rem;
     line-height: 1;
-  }
-
-  &__line {
-    width: 4px;
-    min-height: 96px;
-    background-color: var(--color-primary);
-    display: inline-block;
   }
 
   &__card {
@@ -75,16 +83,17 @@
 
 @media (max-width: 767px) {
   .timeline {
+    &__list::before {
+      left: 26px;
+    }
+
     &__item {
       grid-template-columns: 56px 1fr;
     }
 
     &__date {
       font-size: 1rem;
-    }
-
-    &__line {
-      min-height: 80px;
+      min-height: 28px;
     }
 
     &__title {
@@ -93,6 +102,14 @@
 
     &__card {
       padding: var(--space-3) var(--space-4);
+    }
+
+    &__card::before {
+      top: 16px;
+      left: -10px;
+      border-top-width: 8px;
+      border-bottom-width: 8px;
+      border-right-width: 10px;
     }
   }
 }

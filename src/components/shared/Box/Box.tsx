@@ -1,7 +1,7 @@
 // src/components/Box/Box.tsx
 import React from 'react';
 import './Box.scss';
-import type { BoxProps } from '../../types';
+import type { BoxProps } from '../../../types';
 
 const Box: React.FC<BoxProps> = ({ title, content, children, className = '' }) => {
   return (

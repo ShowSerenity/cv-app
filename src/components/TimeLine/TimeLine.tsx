@@ -17,7 +17,6 @@ const TimeLine: React.FC<TimeLineProps> = ({ data }) => {
               <time className="timeline__date" dateTime={String(item.date)}>
                 {item.date}
               </time>
-              <span className="timeline__line" aria-hidden="true" />
             </div>
 
             <article className="timeline__card">

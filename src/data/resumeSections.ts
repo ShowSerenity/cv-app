@@ -190,5 +190,15 @@ export const feedbackItems: FeedbackItem[] = [
       name: 'Team Colleague',
       citeUrl: 'https://www.citeexample.com'
     }
+  },
+  {
+    feedback:
+      'He quickly adapts to new requirements, communicates clearly during collaboration, and shows strong motivation in both frontend and technical problem-solving tasks.',
+    reporter: {
+      photoUrl:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80',
+      name: 'Team Colleague',
+      citeUrl: 'https://www.citeexample.com'
+    }
   }
 ];
