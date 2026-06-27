@@ -1,5 +1,5 @@
 // src/pages/Inner/InnerPage.tsx
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
@@ -47,7 +47,7 @@ const InnerPage: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 767px)');
   const isFirstRender = useRef(true);
   const [activeSection, setActiveSection] = useState('about');
-  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [isPanelOpen, setIsPanelOpen] = useState<boolean>(() => !isMobile);
   const [isSkillFormOpen, setIsSkillFormOpen] = useState(false);
 
   const educationItems = useAppSelector((state) =>
@@ -80,17 +80,15 @@ const InnerPage: React.FC = () => {
 
   useEffect(() => {
     if (createSkillStatus === 'succeeded') {
-      setIsSkillFormOpen(false);
       dispatch(clearCreateStatus());
     }
   }, [createSkillStatus, dispatch]);
 
   useEffect(() => {
     if (isFirstRender.current) {
-      setIsPanelOpen(!isMobile);
       isFirstRender.current = false;
     }
-  }, [isMobile]);
+  }, []);
 
   useEffect(() => {
     const sections = sectionIds
@@ -127,22 +125,31 @@ const InnerPage: React.FC = () => {
   };
 
   const handleToggleSkillForm = () => {
-    setIsSkillFormOpen((prev) => !prev);
+    if (createSkillStatus === 'succeeded') {
+      dispatch(clearCreateStatus());
+    }
 
     if (createSkillError) {
       dispatch(clearCreateStatus());
     }
+
+    setIsSkillFormOpen((prev) => !prev);
   };
 
   const handleSkillSubmit = async (values: { name: string; range: number }) => {
     await dispatch(createSkill(values)).unwrap();
+    setIsSkillFormOpen(false);
   };
 
-  const pageStateClass = isPanelOpen
-    ? isMobile
-      ? 'inner-page--mobile-open'
-      : 'inner-page--desktop-open'
-    : 'inner-page--closed';
+  const pageStateClass = useMemo(() => {
+    if (isPanelOpen) {
+      return isMobile
+        ? 'inner-page--mobile-open'
+        : 'inner-page--desktop-open';
+    }
+
+    return 'inner-page--closed';
+  }, [isMobile, isPanelOpen]);
 
   return (
     <div className={`inner-page ${pageStateClass}`}>

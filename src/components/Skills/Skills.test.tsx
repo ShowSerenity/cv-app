@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Skills from './Skills';
 import type { SkillItem } from '../../types';
