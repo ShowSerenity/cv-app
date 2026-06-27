@@ -32,9 +32,11 @@ export type ButtonProps = {
   variant?: 'primary' | 'dark' | 'light' | 'panel';
   fullWidth?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 };
 
 export type TimelineItem = {
+  id?: string;
   date: number | string;
   title: string;
   text: string;
@@ -47,6 +49,21 @@ export type ExpertiseItem = {
     job: string;
     description: string;
   };
+};
+
+export type SkillItem = {
+  id: string;
+  name: string;
+  range: number;
+};
+
+export type SkillsProps = {
+  items: SkillItem[];
+};
+
+export type AddSkillFormValues = {
+  name: string;
+  range: string;
 };
 
 export type BoxProps = {
@@ -91,4 +108,12 @@ export type FeedbackProps = {
 
 export type PortfolioProps = {
   items: PortfolioItem[];
+};
+
+export type AsyncStatus = 'idle' | 'loading' | 'succeeded' | 'failed';
+
+export type TimeLineProps = {
+  data: TimelineItem[];
+  status?: AsyncStatus;
+  error?: string | null;
 };

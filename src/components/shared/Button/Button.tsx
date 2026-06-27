@@ -10,9 +10,10 @@ const Button: React.FC<ButtonProps> = ({
   href,
   variant = 'primary',
   fullWidth = false,
-  type = 'button'
+  type = 'button',
+  disabled = false
 }) => {
-  const className = `button button--${variant} ${fullWidth ? 'button--full-width' : ''}`;
+  const className = `button button--${variant} ${fullWidth ? 'button--full-width' : ''}`.trim();
 
   if (href) {
     return (
@@ -24,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <button type={type} className={className} onClick={onClick}>
+    <button type={type} className={className} onClick={onClick} disabled={disabled}>
       {icon && <span className="button__icon">{icon}</span>}
       <span className="button__text">{text}</span>
     </button>

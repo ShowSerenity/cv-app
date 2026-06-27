@@ -13,10 +13,17 @@
   transition:
     background-color var(--transition-fast),
     color var(--transition-fast),
-    transform var(--transition-fast);
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
 
-  &:hover {
+  &:hover:not(:disabled) {
     transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
   }
 
   &--full-width {
@@ -27,7 +34,7 @@
     background-color: var(--color-button-dark);
     color: var(--color-white);
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: var(--color-primary-hover);
       color: var(--color-panel-dark);
     }
@@ -37,7 +44,7 @@
     background-color: var(--color-button-dark);
     color: var(--color-white);
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: var(--color-button-dark-hover);
     }
   }
@@ -46,7 +53,7 @@
     background-color: var(--color-white);
     color: var(--color-text);
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: var(--color-primary-hover);
       color: var(--color-panel-dark);
     }
@@ -59,7 +66,7 @@
     padding: 0;
     min-height: auto;
 
-    &:hover {
+    &:hover:not(:disabled) {
       color: var(--color-primary-hover);
       transform: none;
     }

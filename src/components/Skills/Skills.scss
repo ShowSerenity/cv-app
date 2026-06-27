@@ -1,0 +1,110 @@
+// src/components/Skills/Skills.scss
+
+.skills {
+  width: 100%;
+
+  &--empty {
+    padding: var(--space-6);
+    border: 1px solid rgba(47, 197, 141, 0.9);
+    background-color: rgba(255, 255, 255, 0.45);
+  }
+
+  &__empty-text {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 1.2rem;
+  }
+
+  &__item {
+    width: 100%;
+  }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    min-height: 1.85rem;
+    padding: 0 0.9rem;
+    background-color: #31bf83;
+    color: var(--color-white);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__name {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.96rem;
+    line-height: 1;
+  }
+
+  &__scale {
+    position: relative;
+    padding-top: 0.8rem;
+    min-height: 3.3rem;
+  }
+
+  &__scale-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #8d95a6;
+  }
+
+  &__scale-mark {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+  }
+
+  &__scale-mark:last-child {
+    transform: translateX(-100%);
+  }
+
+  &__scale-tick {
+    display: block;
+    width: 1px;
+    height: 10px;
+    background-color: #8d95a6;
+    margin: 0 auto;
+  }
+
+  &__scale-label {
+    display: block;
+    margin-top: 0.55rem;
+    color: #7f8795;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 767px) {
+  .skills {
+    &__bar {
+      min-height: 1.7rem;
+      padding: 0 0.7rem;
+    }
+
+    &__name {
+      font-size: 0.9rem;
+    }
+
+    &__scale {
+      min-height: 4.2rem;
+    }
+
+    &__scale-label {
+      font-size: 0.82rem;
+    }
+  }
+}

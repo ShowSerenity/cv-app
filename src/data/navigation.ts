@@ -3,6 +3,7 @@ import {
   faCircleUser,
   faUserGraduate,
   faPencil,
+  faScrewdriverWrench,
   faBriefcase,
   faPaperPlane,
   faComment
@@ -27,6 +28,12 @@ export const navigationItems: NavigationItem[] = [
     label: 'Experience',
     icon: faPencil,
     href: '#experience'
+  },
+  {
+    id: 'skills',
+    label: 'Skills',
+    icon: faScrewdriverWrench,
+    href: '#skills'
   },
   {
     id: 'portfolio',
