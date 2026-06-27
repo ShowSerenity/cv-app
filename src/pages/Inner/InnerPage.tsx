@@ -181,19 +181,8 @@ const InnerPage: React.FC = () => {
 
           <section id="skills" className="inner-page__section">
             <Box title="Skills">
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '2rem'
-                }}
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end'
-                  }}
-                >
+              <div className="inner-page__skills-block">
+                <div className="inner-page__skills-actions">
                   <Button
                     text={isSkillFormOpen ? 'Close edit' : 'Open edit'}
                     variant="dark"
@@ -203,13 +192,7 @@ const InnerPage: React.FC = () => {
                 </div>
 
                 {isSkillFormOpen ? (
-                  <div
-                    style={{
-                      border: '1px solid rgba(47, 197, 141, 0.9)',
-                      padding: '1.1rem 0.9rem 1.25rem',
-                      backgroundColor: 'rgba(255, 255, 255, 0.28)'
-                    }}
-                  >
+                  <div className="inner-page__skills-form-shell">
                     <AddSkillForm
                       onSubmit={handleSkillSubmit}
                       isSubmittingExternally={createSkillStatus === 'loading'}
@@ -218,15 +201,7 @@ const InnerPage: React.FC = () => {
                 ) : null}
 
                 {createSkillError ? (
-                  <p
-                    style={{
-                      color: '#d64545',
-                      fontSize: '0.95rem',
-                      lineHeight: 1.4
-                    }}
-                  >
-                    {createSkillError}
-                  </p>
+                  <p className="inner-page__skills-error">{createSkillError}</p>
                 ) : null}
 
                 <Skills items={skills} />

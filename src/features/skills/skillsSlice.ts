@@ -1,5 +1,5 @@
 // src/features/skills/skillsSlice.ts
-import { createAsyncThunk, createSlice, nanoid, type PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, nanoid } from '@reduxjs/toolkit';
 import type { SkillItem } from '../../types';
 
 type CreateSkillPayload = {
@@ -105,11 +105,6 @@ const skillsSlice = createSlice({
     clearCreateStatus(state) {
       state.createStatus = 'idle';
       state.createError = null;
-    },
-    hydrateSkillsFromStorage(state, action: PayloadAction<SkillItem[]>) {
-      state.items = action.payload;
-      state.status = 'succeeded';
-      state.error = null;
     }
   },
   extraReducers: (builder) => {
@@ -141,5 +136,5 @@ const skillsSlice = createSlice({
   }
 });
 
-export const { clearCreateStatus, hydrateSkillsFromStorage } = skillsSlice.actions;
+export const { clearCreateStatus } = skillsSlice.actions;
 export default skillsSlice.reducer;

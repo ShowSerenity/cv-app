@@ -7,8 +7,7 @@ import {
 import educationReducer from '../features/education/educationSlice';
 import skillsReducer, {
   createSkill,
-  fetchSkills,
-  hydrateSkillsFromStorage
+  fetchSkills
 } from '../features/skills/skillsSlice';
 
 const skillsStorageMiddleware = createListenerMiddleware();
@@ -16,8 +15,7 @@ const skillsStorageMiddleware = createListenerMiddleware();
 skillsStorageMiddleware.startListening({
   matcher: isAnyOf(
     createSkill.fulfilled,
-    fetchSkills.fulfilled,
-    hydrateSkillsFromStorage
+    fetchSkills.fulfilled
   ),
   effect: (_, api) => {
     const state = api.getState() as RootState;
