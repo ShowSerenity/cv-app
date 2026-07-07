@@ -3,6 +3,13 @@
 .timeline {
   width: 100%;
 
+  &--state {
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &__list {
     position: relative;
     display: flex;
@@ -79,6 +86,48 @@
     font-size: 1rem;
     line-height: 1.6;
   }
+
+  &__status {
+    width: 100%;
+    min-height: 140px;
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+  }
+
+  &__status--loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.72);
+  }
+
+  &__status--error,
+  &__status--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.72);
+  }
+
+  &__status-text {
+    color: var(--color-text-error);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 32rem;
+  }
+
+  &__spinner-icon {
+    color: var(--color-primary);
+    font-size: 3rem;
+    animation: timeline-spinner-rotate 1s linear infinite;
+  }
+}
+
+@keyframes timeline-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 767px) {
@@ -110,6 +159,15 @@
       border-top-width: 8px;
       border-bottom-width: 8px;
       border-right-width: 10px;
+    }
+
+    &__status {
+      min-height: 110px;
+      padding: var(--space-4);
+    }
+
+    &__spinner-icon {
+      font-size: 2.5rem;
     }
   }
 }

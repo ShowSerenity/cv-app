@@ -116,7 +116,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 6,
-    title: 'Energy Consumption Forecasting in Smart Homes',
+    title: 'Smart Homes Energy Forecasting',
     category: 'ML',
     image: 'https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?auto=format&fit=crop&w=1400&q=80',
     description:

@@ -1,0 +1,78 @@
+// src/components/AddSkillForm/AddSkillForm.scss
+
+.add-skill-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+  max-width: 420px;
+
+  &__field {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 270px);
+    align-items: center;
+    column-gap: 0.9rem;
+    row-gap: 0.35rem;
+  }
+
+  &__label {
+    color: var(--color-text);
+    font-size: 1rem;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  &__input {
+    width: 100%;
+    min-height: 40px;
+    padding: 0.7rem 0.95rem;
+    border: 1px solid #8b9099;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--color-text);
+    font-size: 0.98rem;
+    line-height: 1.3;
+    transition:
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast);
+
+    &::placeholder {
+      color: #8d95a6;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(47, 197, 141, 0.12);
+    }
+  }
+
+  &__input--error {
+    border-color: var(--color-text-error);
+  }
+
+  &__error {
+    grid-column: 2 / 3;
+    color: var(--color-text-error);
+    font-size: 0.88rem;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 767px) {
+  .add-skill-form {
+    max-width: none;
+
+    &__field {
+      grid-template-columns: 1fr;
+    }
+
+    &__label {
+      white-space: normal;
+    }
+
+    &__error {
+      grid-column: auto;
+    }
+  }
+}

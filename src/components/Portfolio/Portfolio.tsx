@@ -1,6 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './Portfolio.scss';
-import type { PortfolioCategory, PortfolioItem, PortfolioProps } from '../../types';
+import type {
+  PortfolioCategory,
+  PortfolioItem,
+  PortfolioProps
+} from '../../types';
 
 const categories: PortfolioCategory[] = ['All', 'Web', 'ML', 'NLP'];
 
@@ -13,7 +17,8 @@ const ADD_DURATION = 180;
 
 const Portfolio: React.FC<PortfolioProps> = ({ items }) => {
   const [activeCategory, setActiveCategory] = useState<PortfolioCategory>('All');
-  const [pendingCategory, setPendingCategory] = useState<PortfolioCategory | null>(null);
+  const [pendingCategory, setPendingCategory] =
+    useState<PortfolioCategory | null>(null);
   const [phase, setPhase] = useState<'idle' | 'removing' | 'adding'>('idle');
   const [visibleItems, setVisibleItems] = useState<AnimatedPortfolioItem[]>(
     items.map((item) => ({
@@ -22,21 +27,20 @@ const Portfolio: React.FC<PortfolioProps> = ({ items }) => {
     }))
   );
 
+  const getCategoryItems = useMemo(
+    () => (category: PortfolioCategory) => {
+      if (category === 'All') {
+        return items;
+      }
+
+      return items.filter((item) => item.category === category);
+    },
+    [items]
+  );
+
   const activeItems = useMemo(() => {
-    if (activeCategory === 'All') {
-      return items;
-    }
-
-    return items.filter((item) => item.category === activeCategory);
-  }, [activeCategory, items]);
-
-  const getCategoryItems = (category: PortfolioCategory) => {
-    if (category === 'All') {
-      return items;
-    }
-
-    return items.filter((item) => item.category === category);
-  };
+    return getCategoryItems(activeCategory);
+  }, [activeCategory, getCategoryItems]);
 
   const handleCategoryChange = (category: PortfolioCategory) => {
     if (category === activeCategory || pendingCategory || phase !== 'idle') {
@@ -80,7 +84,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ items }) => {
     return () => {
       window.clearTimeout(removeTimer);
     };
-  }, [phase, pendingCategory, activeItems, items]);
+  }, [phase, pendingCategory, activeItems, getCategoryItems]);
 
   useEffect(() => {
     if (phase !== 'adding') {
@@ -113,7 +117,9 @@ const Portfolio: React.FC<PortfolioProps> = ({ items }) => {
             <React.Fragment key={category}>
               <button
                 type="button"
-                className={`portfolio__filter ${isActive ? 'portfolio__filter--active' : ''}`}
+                className={`portfolio__filter ${
+                  isActive ? 'portfolio__filter--active' : ''
+                }`}
                 aria-pressed={isActive}
                 onClick={() => handleCategoryChange(category)}
               >
@@ -148,7 +154,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ items }) => {
                   <h3 className="portfolio__title">{item.title}</h3>
                   <p className="portfolio__description">{item.description}</p>
 
-                  {item.url && (
+                  {item.url ? (
                     <a
                       className="portfolio__link"
                       href={item.url}
@@ -157,7 +163,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ items }) => {
                     >
                       View project
                     </a>
-                  )}
+                  ) : null}
                 </div>
               </div>
             </div>
