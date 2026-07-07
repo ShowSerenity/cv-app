@@ -1,0 +1,106 @@
+/* src/components/Panel/Panel.scss */
+
+.panel-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 18;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  min-height: 100vh;
+  background-color: var(--color-panel);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: transform var(--transition-normal);
+
+  &__top {
+    padding: var(--space-4) var(--space-4) 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__nav {
+    flex: 1;
+    padding: var(--space-8) var(--space-4);
+  }
+
+  &__bottom {
+    padding: var(--space-4);
+  }
+
+  &--desktop {
+    width: var(--panel-width-desktop);
+  }
+
+  &--mobile {
+    width: var(--panel-width-mobile);
+
+    .panel__nav {
+      padding-top: var(--space-10);
+    }
+
+    .panel__bottom {
+      display: flex;
+      justify-content: center;
+      padding-bottom: var(--space-8);
+    }
+  }
+
+  &--open {
+    transform: translateX(0);
+  }
+
+  &--desktop.panel--closed {
+    transform: translateX(calc(-1 * var(--panel-width-desktop)));
+  }
+
+  &--mobile.panel--closed {
+    transform: translateX(calc(-1 * var(--panel-width-mobile)));
+  }
+}
+
+.panel-toggle {
+  position: fixed;
+  top: 20px;
+  z-index: 30;
+  width: var(--burger-width);
+  height: var(--burger-width);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background-color: var(--color-button-dark);
+  color: var(--color-white);
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-panel-toggle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    left var(--transition-normal),
+    background-color var(--transition-fast);
+
+  &:hover {
+    background-color: var(--color-button-dark-hover);
+  }
+
+  &--desktop.panel-toggle--open {
+    left: calc(var(--panel-width-desktop) - 2px);
+  }
+
+  &--desktop.panel-toggle--closed {
+    left: calc(-1 * var(--burger-width) + var(--burger-visible-part));
+  }
+
+  &--mobile.panel-toggle--open {
+    left: calc(var(--panel-width-mobile) - 2px);
+  }
+
+  &--mobile.panel-toggle--closed {
+    left: calc(-1 * var(--burger-width) + var(--burger-visible-part));
+  }
+}

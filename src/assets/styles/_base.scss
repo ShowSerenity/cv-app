@@ -1,0 +1,44 @@
+/* src/assets/styles/_base.scss */
+
+body {
+  background-color: var(--color-page-bg);
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.main-shell {
+  min-height: 100vh;
+}
+
+.section-title {
+  margin-bottom: var(--space-6);
+  color: var(--color-primary);
+  font-size: clamp(1.9rem, 1.5rem + 1vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}

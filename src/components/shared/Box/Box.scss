@@ -1,0 +1,17 @@
+/* src/components/Box/Box.scss */
+
+.box {
+  width: 100%;
+
+  &__title {
+    margin-bottom: var(--space-6);
+    color: var(--color-primary);
+    font-size: clamp(1.9rem, 1.5rem + 1vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  &__content {
+    width: 100%;
+  }
+}

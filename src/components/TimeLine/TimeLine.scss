@@ -1,0 +1,115 @@
+/* src/components/TimeLine/TimeLine.scss */
+
+.timeline {
+  width: 100%;
+
+  &__list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  &__list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 34px;
+    width: 4px;
+    background-color: var(--color-primary);
+  }
+
+  &__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: var(--space-3);
+    align-items: start;
+  }
+
+  &__date-column {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  &__date {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 0 var(--space-2);
+    background-color: #ffffff;
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+
+  &__card {
+    position: relative;
+    background-color: var(--color-card-bg);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  &__card::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: -12px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 12px solid var(--color-card-bg);
+  }
+
+  &__title {
+    margin-bottom: var(--space-2);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.2;
+  }
+
+  &__text {
+    color: var(--color-text);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 767px) {
+  .timeline {
+    &__list::before {
+      left: 26px;
+    }
+
+    &__item {
+      grid-template-columns: 56px 1fr;
+    }
+
+    &__date {
+      font-size: 1rem;
+      min-height: 28px;
+    }
+
+    &__title {
+      font-size: 1.2rem;
+    }
+
+    &__card {
+      padding: var(--space-3) var(--space-4);
+    }
+
+    &__card::before {
+      top: 16px;
+      left: -10px;
+      border-top-width: 8px;
+      border-bottom-width: 8px;
+      border-right-width: 10px;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+/* src/components/Navigation/Navigation.scss */
+
+.navigation {
+  width: 100%;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 44px;
+    color: var(--color-panel-text);
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-primary-hover);
+    }
+
+    &--active {
+      color: var(--color-panel-text-active);
+      font-weight: 500;
+      text-shadow: 0 0 10px rgba(47, 197, 141, 0.18);
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    font-size: 0.95rem;
+  }
+
+  &__label {
+    font-size: 0.98rem;
+  }
+
+  &--compact {
+    .navigation__list {
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .navigation__link {
+      justify-content: center;
+      min-width: 44px;
+    }
+
+    .navigation__icon {
+      width: auto;
+      font-size: 1.05rem;
+    }
+  }
+}
